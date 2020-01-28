@@ -7,6 +7,7 @@ public class ThirdPersonController : MonoBehaviour
     CharacterController controller;
     Vector3 moveDirection = Vector3.zero;
 
+    public bool canMove = true;
     Transform cameraTarget;
     float cameraPitch = 40.0f;
     float cameraYaw = 0;
@@ -43,7 +44,7 @@ public class ThirdPersonController : MonoBehaviour
     {
 
         // If mouse button down then allow user to look around
-        if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1))
         {
             cameraPitch += Input.GetAxis("Mouse Y") * cameraPitchSpeed;
             cameraPitch = Mathf.Clamp(cameraPitch, cameraPitchMin, cameraPitchMax);
@@ -92,6 +93,11 @@ public class ThirdPersonController : MonoBehaviour
     // Fixme: add running
     public void FixedUpdate()
     {
+        if (!canMove)
+        {
+            return;
+        }
+
         var h = Input.GetAxis("Horizontal");
         var v = Input.GetAxis("Vertical");
 
@@ -99,23 +105,22 @@ public class ThirdPersonController : MonoBehaviour
         if (!lerpYaw && (h != 0 || v != 0))
             lerpYaw = true;
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(2))
             transform.rotation = Quaternion.Euler(0, cameraYaw, 0); // Face camera
         else
             transform.Rotate(0, h * turnSpeed, 0); // Turn left/right
 
-        //See if we are walled
+        //See if we hit a wall
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, 2f))
         {
-            print("walled");
             isWalled = true;
         }
 
         // Only allow user control when on ground
         if (controller.isGrounded)
         {
-            if (Input.GetMouseButton(1))
+            if (Input.GetMouseButton(2))
                 moveDirection = new Vector3(h, 0, v); // Strafe
             else
                 moveDirection = Vector3.forward * v; // Move forward/backward
@@ -123,10 +128,12 @@ public class ThirdPersonController : MonoBehaviour
             isWalled = false;
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection *= moveDirectionSpeed;
+            // Jumping
             if (Input.GetButton("Jump"))
                 moveDirection.y = jumpSpeed;
+            // Speed Boost
             if (Input.GetKey(KeyCode.LeftShift))
-                moveDirection *= 2;
+                moveDirection *= 1.25f;
         }
 
         if (isWalled)

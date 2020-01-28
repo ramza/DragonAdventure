@@ -57,16 +57,19 @@ public class PlayerAttackState : PlayerState
 {
     public override void Enter(PlayerStateMachine playerStateMachine)
     {
-
+        playerStateMachine.thirdPersonController.canMove = false;
+        playerStateMachine.ResetTimer();
+        playerStateMachine._anim.SetBool("attack", true);
     }
 
     public override void Update(PlayerStateMachine playerStateMachine)
     {
- 
+        playerStateMachine.Attack();
     }
     public override void Exit(PlayerStateMachine playerStateMachine)
     {
-
+        playerStateMachine.thirdPersonController.canMove = true;
+        playerStateMachine._anim.SetBool("attack", false);
     }
 }
 

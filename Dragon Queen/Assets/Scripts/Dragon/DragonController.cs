@@ -16,12 +16,17 @@ public class DragonController : MonoBehaviour
     BasicFollow basicFollow;
     HideTiles hideTiles;
     public GameObject rider;
-
+    CharacterController cc;
     GameObject player;
+
+    Animator anim;
+
     private float timer;
     private float inputDelay = 1f;
     void Start()
     {
+        anim = GetComponentInChildren<Animator>();
+        cc = GetComponent<CharacterController>();
         airController = GetComponent<BasicFlight>();
         groundController = GetComponent<DragonGroundController>();
         hideTiles = GetComponent<HideTiles>();
@@ -34,22 +39,40 @@ public class DragonController : MonoBehaviour
     {
         switch (dState)
         {
+            case DragonState.IDLE:
+                //anim.SetBool("fly", true);
+                break;
             case DragonState.WALK:
                 timer += Time.deltaTime;
+
+                var v = Input.GetAxis("Vertical");
+                if ( v== 0)
+                {
+                    anim.SetBool("walk", false);
+                }
+                else
+                {
+                    anim.SetBool("walk", true);
+                }
+
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
+                    anim.SetBool("fly", true);
+                    cc.Move(Vector3.up * 4f);
                     dState = DragonState.FLY;
                     airController.enabled = true;
                     groundController.enabled = false;
                 }
                 else if (Input.GetKeyDown(KeyCode.R) && timer > inputDelay)
                 {
+                    anim.SetBool("walk", false);
                     DisableDragonControls();
                 }
                 break;
             case DragonState.FLY:
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
+                    anim.SetBool("fly", false);
                     dState = DragonState.WALK;
                     airController.enabled = false;
                     transform.rotation = Quaternion.Euler(Vector3.zero);
@@ -80,6 +103,8 @@ public class DragonController : MonoBehaviour
 
     public void DisableDragonControls()
     {
+        anim.SetBool("walk", false);
+        anim.SetBool("fly", false);
         dState = DragonState.IDLE;
         hideTiles.enabled = false;
         groundController.enabled = false;
@@ -95,7 +120,7 @@ public class DragonController : MonoBehaviour
     public void ActivateDragon()
     {
         timer = 0;
-        transform.position += Vector3.up * 2f;
+        cc.Move(Vector3.up * 1f);
         groundController.enabled = true;
         hideTiles.enabled = true;
         dState = DragonState.WALK;

@@ -9,8 +9,10 @@ public class PlayerStateMachine : MonoBehaviour
     PlayerIdleState playerIdleState = new PlayerIdleState();
     PlayerRunState playerRunState = new PlayerRunState();
     PlayerJumpState playerJumpState = new PlayerJumpState();
-    ThirdPersonController thirdPersonController;
+    PlayerAttackState playerAttackState = new PlayerAttackState();
+    public ThirdPersonController thirdPersonController;
     public Animator _anim;
+    Camera camera;
 
     float timer = 0;
     public void ResetTimer()
@@ -20,6 +22,7 @@ public class PlayerStateMachine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        camera = Camera.main;
         _anim = GetComponentInChildren<Animator>();
         thirdPersonController = GetComponent<ThirdPersonController>();
         playerState = playerIdleState;
@@ -61,6 +64,26 @@ public class PlayerStateMachine : MonoBehaviour
         {
             ChangeState(playerJumpState);
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if(hit.transform.tag == "Interactive")
+                {
+                    return;
+                }
+            }
+            ChangeState(playerAttackState);
+        }
+    }
+
+    public void OnEnable()
+    {
+        playerState = playerIdleState;
     }
 
     public void Run()
@@ -76,6 +99,21 @@ public class PlayerStateMachine : MonoBehaviour
         {
             ChangeState(playerJumpState);
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.tag == "Interactive")
+                {
+                    return;
+                }
+            }
+            ChangeState(playerAttackState);
+        }
     }
 
     public void Jump()
@@ -87,10 +125,28 @@ public class PlayerStateMachine : MonoBehaviour
 
             if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.5f))
             {
-                print("hit something");
+                //print("hit something");
                 GotoIdle();
             }
         }
     }
 
+    public void Attack()
+    {
+        timer += Time.deltaTime;
+
+        if ( timer > 0.5f)
+        {
+            ChangeState(playerIdleState);
+        }
+        RaycastHit hit;
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            Transform objectHit = hit.transform;
+            print(hit.transform.name);
+            // Do something with the object that was hit by the raycast.
+        }
+    }
 }

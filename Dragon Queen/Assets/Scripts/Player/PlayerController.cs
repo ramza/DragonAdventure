@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
         {
             if(hit.transform.tag == "Dragon")
             {
-                print("found the dragon");
                 if (actionBtn)
                 {
                     hit.transform.GetComponent<DragonController>().ActivateDragon();

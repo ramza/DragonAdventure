@@ -7,6 +7,7 @@ TagManager:
   - Fire
   - Tile
   - Dragon
+  - Interactive
   layers:
   - Default
   - TransparentFX
