@@ -131,7 +131,8 @@ public class PlayerDeadState : PlayerState
 {
     public override void Enter(PlayerStateMachine playerStateMachine)
     {
-
+        playerStateMachine.thirdPersonController.canMove = false;
+        playerStateMachine._anim.SetBool("dead", true);
     }
 
     public override void Update(PlayerStateMachine playerStateMachine)
@@ -140,6 +141,7 @@ public class PlayerDeadState : PlayerState
     }
     public override void Exit(PlayerStateMachine playerStateMachine)
     {
-  
+        playerStateMachine.thirdPersonController.canMove = true;
+        playerStateMachine._anim.SetBool("dead", false);
     }
 }

@@ -12,6 +12,12 @@ public class PlayerHealthUI : MonoBehaviour
     public Sprite emptyHeart;
     public float iconSize = 16;
     Vector3 startPosition;
+    public GameObject deadButton;
+
+    public void PlayerDeath()
+    {
+        deadButton.SetActive(true);
+    }
 
     public void Start()
     {
@@ -33,6 +39,7 @@ public class PlayerHealthUI : MonoBehaviour
         while (hearts.Count < maxHP / 2)
         {
             GameObject cell = Instantiate(healthIconCell, startPosition, Quaternion.identity, transform);
+            cell.SetActive(true);
             cell.GetComponent<Image>().sprite = emptyHeart;
             hearts.Add(cell);
         }

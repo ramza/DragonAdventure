@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    bool swimming = false;
+    Vector3 enterWaterPosition = Vector3.zero;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,35 @@ public class PlayerController : MonoBehaviour
                     hit.transform.GetComponent<DragonController>().ActivateDragon();
                     gameObject.SetActive(false);
                 }
+            }
+        }
+
+        if (!swimming)
+        {
+            int layerMask = 1 << 4;
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f, layerMask))
+            {
+                print("hit the water");
+                GetComponent<PlayerStateMachine>().EnterWater();
+                enterWaterPosition = transform.position;
+                swimming = true;
+            }
+        }
+
+
+        else
+        {
+            int layerMask = 1 << 8;
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f, layerMask))
+            {
+                if ( Mathf.Abs(transform.position.x -enterWaterPosition.x) >= 1 && Mathf.Abs(transform.position.z - enterWaterPosition.z) >= 1)
+                {
+                    print("left the water");
+                    GetComponent<PlayerStateMachine>().ExitWater();
+                    swimming = false;
+                }
+
+     
             }
         }
     }

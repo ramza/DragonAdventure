@@ -6,11 +6,11 @@ public class DragonController : MonoBehaviour
 {
     private enum DragonState
     {
-        IDLE, WALK, FLY
+        IDLE, WALK, FLY, ATTACK
     }
 
     DragonState dState;
-
+    public ParticleSystem dragonFire;
     DragonGroundController groundController;
     BasicFlight airController;
     BasicFollow basicFollow;
@@ -23,6 +23,11 @@ public class DragonController : MonoBehaviour
 
     private float timer;
     private float inputDelay = 1f;
+
+
+    private float fireTimer;
+    private float cookDelay = 0.1f;
+
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
@@ -33,6 +38,7 @@ public class DragonController : MonoBehaviour
         basicFollow = GetComponent<BasicFollow>();
         player = GameObject.FindGameObjectWithTag("Player");
         dState = DragonState.IDLE;
+        dragonFire.Stop();
     }
 
     void Update()
@@ -40,6 +46,7 @@ public class DragonController : MonoBehaviour
         switch (dState)
         {
             case DragonState.IDLE:
+
                 //anim.SetBool("fly", true);
                 break;
             case DragonState.WALK:
@@ -68,6 +75,15 @@ public class DragonController : MonoBehaviour
                     anim.SetBool("walk", false);
                     DisableDragonControls();
                 }
+                
+                else if (Input.GetMouseButton(0))
+                {
+                    groundController.canMove = false;
+                    dState = DragonState.ATTACK;
+                    anim.SetBool("attack", true);
+                    dragonFire.Play();
+                    timer = 0;
+                }
                 break;
             case DragonState.FLY:
                 if (Input.GetKeyDown(KeyCode.Space))
@@ -79,6 +95,43 @@ public class DragonController : MonoBehaviour
                     groundController.enabled = true;
                 }
                 GroundCheck();
+                WaterCheck();
+                break;
+            case DragonState.ATTACK:
+                timer += Time.deltaTime;
+
+                if (!Input.GetMouseButton(0))
+                {
+                    groundController.canMove = true;
+                    anim.SetBool("attack", false);
+                    dState = DragonState.WALK;
+                    dragonFire.Stop();
+                }
+                else if(timer > cookDelay)
+                {
+                    timer = 0;
+                    RaycastHit hit;
+
+                    if (Physics.Raycast(transform.position, transform.forward, out hit, 20f))
+                    {
+                        print("hit a " + hit.transform.name);
+                        if (hit.transform.tag == "Enemy")
+                        {
+
+                            Transform objectHit = hit.transform;
+                            Vector3 direction = (objectHit.position - transform.position).normalized;
+                            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));    // flattens the vector3
+                            transform.rotation = lookRotation;
+
+
+                            objectHit.GetComponent<EnemyHealthManager>().Hurt(2f);
+
+
+                        }
+
+                        // Do something with the object that was hit by the raycast.
+                    }
+                }
                 break;
         }
 
@@ -93,8 +146,12 @@ public class DragonController : MonoBehaviour
         {
             DisableDragonControls();
         }
+    }
 
-        layerMask = 1 << 4;
+    public void WaterCheck()
+    {
+        int layerMask = 1 << 4;
+        RaycastHit groundRay;
         if (Physics.Raycast(transform.position, Vector3.down, out groundRay, 1f, layerMask))
         {
             DisableDragonControls();
@@ -127,5 +184,9 @@ public class DragonController : MonoBehaviour
         dState = DragonState.WALK;
         rider.SetActive(true);
         basicFollow.enabled = false;
+        if (!groundController.canMove)
+        {
+            groundController.canMove = true;
+        }
     }
 }

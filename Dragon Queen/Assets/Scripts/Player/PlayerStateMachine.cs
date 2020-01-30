@@ -11,6 +11,7 @@ public class PlayerStateMachine : MonoBehaviour
     PlayerRunState playerRunState = new PlayerRunState();
     PlayerJumpState playerJumpState = new PlayerJumpState();
     PlayerAttackState playerAttackState = new PlayerAttackState();
+    PlayerDeadState playerDeadState = new PlayerDeadState();
     public ThirdPersonController thirdPersonController;
     CharacterStats stats;
     public Animator _anim;
@@ -134,6 +135,17 @@ public class PlayerStateMachine : MonoBehaviour
         }
     }
 
+    public void EnterWater()
+    {
+        _anim.SetBool("swim", true);
+    }
+
+
+    public void ExitWater()
+    {
+        _anim.SetBool("swim", false);
+    }
+
     public void Attack()
     {
         if(timer == 0)
@@ -157,7 +169,6 @@ public class PlayerStateMachine : MonoBehaviour
 
                 }
 
-                // Do something with the object that was hit by the raycast.
             }
         }
 
@@ -168,5 +179,16 @@ public class PlayerStateMachine : MonoBehaviour
             ChangeState(playerIdleState);
         }
 
+    }
+
+    public void Revive()
+    {
+        thirdPersonController.canMove = true;
+        ChangeState(playerIdleState);
+    }
+
+    public void KillPlayer()
+    {
+        ChangeState(playerDeadState);
     }
 }

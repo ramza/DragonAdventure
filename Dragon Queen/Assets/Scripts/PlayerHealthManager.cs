@@ -15,6 +15,13 @@ public class PlayerHealthManager : MonoBehaviour
         UpdatePlayerHealth();
     }
 
+    public void Revive()
+    {
+        stats.curHP = stats.maxHP;
+        UpdatePlayerHealth();
+
+    }
+
     public void HealPlayer(float amount)
     {
         stats.curHP += amount;
@@ -28,6 +35,7 @@ public class PlayerHealthManager : MonoBehaviour
 
     void UpdatePlayerHealth()
     {
+        print("updage player hearts");
         playerHealthUI.UpdatePlayerHealth(stats.curHP, stats.maxHP);
     }
 
@@ -37,7 +45,8 @@ public class PlayerHealthManager : MonoBehaviour
         stats.curHP -= dmg;
         if ( stats.curHP < 1)
         {
-            // Dead
+            playerStateMachine.KillPlayer();
+            playerHealthUI.PlayerDeath();
           
         }
 

@@ -88,16 +88,21 @@ public class EnemyStateMachine : MonoBehaviour
 
     public void Idle()
     {
-        if (Mathf.Abs(player.transform.position.x - transform.position.x) < chaseRange || Mathf.Abs(player.transform.position.z - transform.position.z) < chaseRange)
+        if (Mathf.Abs(player.transform.position.x - transform.position.x) < chaseRange && Mathf.Abs(player.transform.position.z - transform.position.z) < chaseRange)
         {
-            ChangeState(enemyChaseState);
-            return;
+            if (!targetIsDead)
+            {
+                ChangeState(enemyChaseState);
+                return;
+            }
+ 
         }
 
         idleTimer += Time.deltaTime;
 
         if (idleTimer > idleTime)
         {
+            targetIsDead = false;
             ChangeState(enemyRunState);
             return;
         }
@@ -121,8 +126,13 @@ public class EnemyStateMachine : MonoBehaviour
 
             if ( hit.transform.tag == "Player")
             {
+  
+                if ( hit.transform.GetComponent<CharacterStats>().curHP <= 0)
+                {
+                    targetIsDead = true;
+                }
                 print("hit something with the goblin attack");
-                hit.transform.GetComponent<PlayerHealthManager>().TakeDamage(1);
+                hit.transform.GetComponent<PlayerHealthManager>().TakeDamage(enemyStats.baseAttackBonus);
             }
         }
     }
@@ -130,6 +140,12 @@ public class EnemyStateMachine : MonoBehaviour
 
     public void Attack()
     {
+        if (!player.activeInHierarchy)
+        {
+            ChangeState(enemyRunState);
+            return;
+        }
+
         if ( canAttack)
         {
             print("goblin attack!");
@@ -187,10 +203,21 @@ public class EnemyStateMachine : MonoBehaviour
 
     public void Chase()
     {
+        if (!player.activeInHierarchy)
+        {
+            ChangeState(enemyRunState);
+            return;
+        }
+
         if (Mathf.Abs(player.transform.position.x - transform.position.x) < attackRange && Mathf.Abs(player.transform.position.z - transform.position.z) < attackRange)
         {
             print("goto enemy attack state");
             ChangeState(enemyAttackState);
+            return;
+        }
+        else if (Mathf.Abs(player.transform.position.x - transform.position.x) > chaseRange && Mathf.Abs(player.transform.position.z - transform.position.z) > chaseRange)
+        {
+            ChangeState(enemyIdleState);
             return;
         }
         else

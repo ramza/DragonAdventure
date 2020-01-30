@@ -9,6 +9,7 @@ TagManager:
   - Dragon
   - Interactive
   - Enemy
+  - PlayerUI
   layers:
   - Default
   - TransparentFX

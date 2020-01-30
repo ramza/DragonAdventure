@@ -54,11 +54,11 @@ public class ThirdPersonController : MonoBehaviour
         }
         else if (Input.GetMouseButton(2))
         {
-            cameraPitch= 40f;
+            //cameraPitch= 40f;
 
-            cameraYaw= 0;
+            //cameraYaw= 0;
    
-            lerpYaw = false;
+            //lerpYaw = false;
         }
         else
         {

@@ -6,21 +6,26 @@ using UnityEngine.UI;
 public class StoryUI : MonoBehaviour
 {
     public Text storyText;
-
+    private GameObject player;
+    private ThirdPersonController thirdPersonController;
     public GameObject[] choiceButtons;
     private bool dialogueOver;
     private DialogueController currentDialogueController;
 
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        thirdPersonController = player.GetComponent<ThirdPersonController>();
         gameObject.SetActive(false);
     }
 
     public void StartDialogue(DialogueController dControl)
     {
+        thirdPersonController.canMove = false;
         dialogueOver = false;
         currentDialogueController = dControl;
         UpdateStoryText(dControl.firstDialogue);
+
     }
 
     public void UpdateStoryText(DialogueNode node)
@@ -28,19 +33,20 @@ public class StoryUI : MonoBehaviour
         ClearDialogueChoices();
         storyText.text = node.mainText;
 
-        if (node.choiceText.Length == 0)
+        if (node.choices.Length == 0)
         {
             choiceButtons[0].SetActive(true);
             choiceButtons[0].GetComponentInChildren<Text>().text = "Ok";
             dialogueOver = true;
             return;
         }
-
-        for (int i = 0; i < node.choiceText.Length; i++)
+        int i = 0;
+        foreach(DialogueNode.DialogueAnswer dAnswer in node.choices)
         {
             choiceButtons[i].SetActive(true);
-            choiceButtons[i].GetComponentInChildren<Text>().text = node.choiceText[i];
-            choiceButtons[i].GetComponent<DialogueNode>().Copy(node.choices[i].choices, node.choices[i].choiceText, node.choices[i].mainText);
+            choiceButtons[i].GetComponentInChildren<Text>().text = dAnswer.answerText;
+            choiceButtons[i].GetComponent<DialogueNode>().choices[0] = dAnswer;
+            i++;
         }
         
     }
@@ -57,10 +63,11 @@ public class StoryUI : MonoBehaviour
     {
         if (dialogueOver)
         {
+            thirdPersonController.canMove = true;
             currentDialogueController.EndDialogue();
             gameObject.SetActive(false);
         }
 
-        UpdateStoryText(choiceButtons[choice].GetComponent<DialogueNode>());
+        UpdateStoryText(choiceButtons[choice].GetComponent<DialogueNode>().choices[0].nextNode);
     }
 }

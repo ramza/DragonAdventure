@@ -38,10 +38,16 @@ public class BasicFollow : MonoBehaviour
         }
         else{
             RaycastHit hit;
-            int layerMask = 1 << 8;
-            if (Physics.Raycast(transform.position, Vector3.down, out hit, 1f, layerMask))
+            int groundMask = 1 << 8;
+            int waterMask = 1 << 4;
+            //int layerMask = groundMask | waterMask;
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, 1f, groundMask))
             {
 
+            }
+            else if(Physics.Raycast(transform.position, Vector3.down, out hit, 1f, waterMask))
+            {
+                transform.position += Vector3.down/3 * Time.deltaTime;
             }
             else
             {

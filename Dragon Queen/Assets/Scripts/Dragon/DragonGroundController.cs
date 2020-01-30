@@ -25,6 +25,7 @@ public class DragonGroundController : MonoBehaviour
     public float turnSpeed = 3.0f;
     public float jumpSpeed = 8.0f;
     public float gravitySpeed = 20.0f;
+    public bool canMove = true;
 
     public void Start()
     {
@@ -40,7 +41,7 @@ public class DragonGroundController : MonoBehaviour
     {
 
         // If mouse button down then allow user to look around
-        if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1))
         {
             cameraPitch += Input.GetAxis("Mouse Y") * cameraPitchSpeed;
             cameraPitch = Mathf.Clamp(cameraPitch, cameraPitchMin, cameraPitchMax);
@@ -97,6 +98,8 @@ public class DragonGroundController : MonoBehaviour
     // Fixme: add running
     public void FixedUpdate()
     {
+        if (!canMove) return;
+
         var h = Input.GetAxis("Horizontal");
         var v = Input.GetAxis("Vertical");
 
@@ -104,7 +107,7 @@ public class DragonGroundController : MonoBehaviour
         if (!lerpYaw && (h != 0 || v != 0))
             lerpYaw = true;
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(2))
             transform.rotation = Quaternion.Euler(0, cameraYaw, 0); // Face camera
         else
             transform.Rotate(0, h * turnSpeed, 0); // Turn left/right
@@ -112,7 +115,7 @@ public class DragonGroundController : MonoBehaviour
         // Only allow user control when on ground
         if (controller.isGrounded)
         {
-            if (Input.GetMouseButton(1))
+            if (Input.GetMouseButton(2))
                 moveDirection = new Vector3(h, 0, v); // Strafe
             else
                 moveDirection = Vector3.forward * v; // Move forward/backward
@@ -122,7 +125,7 @@ public class DragonGroundController : MonoBehaviour
             if (Input.GetButton("Jump"))
                 moveDirection.y = jumpSpeed;
             if (Input.GetKey(KeyCode.LeftShift))
-                moveDirection *= 10;
+                moveDirection *= 2;
         }
 
         moveDirection.y -= gravitySpeed * Time.deltaTime; // Apply gravity

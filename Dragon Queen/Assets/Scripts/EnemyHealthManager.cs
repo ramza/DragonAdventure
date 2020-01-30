@@ -12,12 +12,13 @@ public class EnemyHealthManager : MonoBehaviour
     private CharacterController cc;
     private CapsuleCollider capsuleCollider;
     private EnemyStats enemyStats;
+    private ItemDrop itemDrop;
 
     public float dropRate = 50f;
 
     private void Start()
     {
-
+        itemDrop = GetComponent<ItemDrop>();
         cc = GetComponent<CharacterController>();
         capsuleCollider = GetComponentInChildren<CapsuleCollider>();
         enemyStateMachine = GetComponent<EnemyStateMachine>();
@@ -49,7 +50,7 @@ public class EnemyHealthManager : MonoBehaviour
     {
         enemyStats.curHP -= amount;
         print("hit the goblin");
-        if (enemyStats.curHP < 0)
+        if (enemyStats.curHP <= 0)
         {
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
             print("found " + players.Length + " players in the list");
@@ -67,7 +68,7 @@ public class EnemyHealthManager : MonoBehaviour
         float r = Random.Range(1, 100);
         if (r < dropRate)
         {
- 
+            itemDrop.DropLoot();
         }
 
     }
