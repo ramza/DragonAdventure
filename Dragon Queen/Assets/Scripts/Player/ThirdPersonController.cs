@@ -52,6 +52,14 @@ public class ThirdPersonController : MonoBehaviour
             cameraYaw = cameraYaw % 360.0f;
             lerpYaw = false;
         }
+        else if (Input.GetMouseButton(2))
+        {
+            cameraPitch= 40f;
+
+            cameraYaw= 0;
+   
+            lerpYaw = false;
+        }
         else
         {
             // If moving then make camera follow
@@ -68,7 +76,7 @@ public class ThirdPersonController : MonoBehaviour
         }
 
         // Calculate camera position
-        Vector3 newCameraPosition = cameraTarget.position + (Quaternion.Euler(cameraPitch, cameraYaw, 0) * Vector3.back * cameraDistance);
+        Vector3 newCameraPosition = cameraTarget.position + (Quaternion.Euler(cameraPitch, cameraYaw, 0) * Vector3.back *1.5f* cameraDistance);
 
         // Does new position put us inside anything?
         RaycastHit hitInfo;
@@ -106,7 +114,11 @@ public class ThirdPersonController : MonoBehaviour
             lerpYaw = true;
 
         if (Input.GetMouseButton(2))
+        {
             transform.rotation = Quaternion.Euler(0, cameraYaw, 0); // Face camera
+
+        }
+
         else
             transform.Rotate(0, h * turnSpeed, 0); // Turn left/right
 

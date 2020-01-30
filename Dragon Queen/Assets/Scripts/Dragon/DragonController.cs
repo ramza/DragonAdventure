@@ -75,7 +75,7 @@ public class DragonController : MonoBehaviour
                     anim.SetBool("fly", false);
                     dState = DragonState.WALK;
                     airController.enabled = false;
-                    transform.rotation = Quaternion.Euler(Vector3.zero);
+                    transform.rotation = Quaternion.Euler(new Vector3(0, transform.eulerAngles.y, 0));
                     groundController.enabled = true;
                 }
                 GroundCheck();
@@ -110,8 +110,9 @@ public class DragonController : MonoBehaviour
         groundController.enabled = false;
         airController.enabled = false;
         rider.SetActive(false);
-        transform.rotation = Quaternion.Euler(Vector3.zero);
+        transform.rotation = Quaternion.Euler(new Vector3(0, transform.eulerAngles.y, 0));
         player.transform.position = transform.position + Vector3.right * 2f;
+        player.transform.rotation = transform.rotation;
         player.GetComponent<ThirdPersonController>().enabled = true;
         player.SetActive(true);
         basicFollow.enabled = true;

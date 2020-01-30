@@ -8,6 +8,7 @@ TagManager:
   - Tile
   - Dragon
   - Interactive
+  - Enemy
   layers:
   - Default
   - TransparentFX
