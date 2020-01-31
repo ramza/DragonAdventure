@@ -22,12 +22,18 @@ public class CursorController : MonoBehaviour
 
             // Do something with the object that was hit by the raycast.
 
+            if (Input.GetMouseButtonDown(0) && hit.transform.GetComponent<TreasureChest>())
+            {
 
-            if (hit.transform.GetComponent<Interactive>() && Input.GetMouseButtonDown(0))
+                TreasureChest chest = hit.transform.GetComponent<TreasureChest>();
+                chest.Open(psm);
+            }
+            else if (Input.GetMouseButtonDown(0) && hit.transform.GetComponent<Interactive>())
             {
                 Interactive interactive = hit.transform.GetComponent<Interactive>();
                 interactive.Interact(psm);
             }
+
         }
     }
 }

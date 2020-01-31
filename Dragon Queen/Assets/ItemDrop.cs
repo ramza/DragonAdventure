@@ -31,7 +31,7 @@ public class ItemDrop : MonoBehaviour
             {
                 Debug.Log("dropping item");
     
-                Instantiate(dropItems[i], transform);
+                Instantiate(dropItems[i], transform.position, Quaternion.identity);
                 return;
             }
             else

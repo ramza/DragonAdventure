@@ -57,6 +57,10 @@ public class PlayerStateMachine : MonoBehaviour
 
     public void Idle()
     {
+        if (!thirdPersonController.canMove)
+        {
+            return;
+        }
         var v = Input.GetAxis("Vertical");
 
         if (v != 0)
@@ -76,7 +80,7 @@ public class PlayerStateMachine : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                if(hit.transform.tag == "Interactive")
+                if(hit.transform.tag == "Interactive" || hit.transform.tag == "Chest")
                 {
                     return;
                 }
@@ -154,7 +158,7 @@ public class PlayerStateMachine : MonoBehaviour
 
             if (Physics.Raycast(transform.position, transform.forward, out hit, 3f))
             {
-                print("hit a " + hit.transform.name);
+     
                 if (hit.transform.tag == "Enemy")
                 {
 
@@ -167,6 +171,14 @@ public class PlayerStateMachine : MonoBehaviour
                     objectHit.GetComponent<EnemyHealthManager>().Hurt(stats.CalculateDamage());
 
 
+                } else if ( hit.transform.tag == "Breakable")
+                {
+                    Transform objectHit = hit.transform;
+                    Vector3 direction = (objectHit.position - transform.position).normalized;
+                    Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));    // flattens the vector3
+                    transform.rotation = lookRotation;
+                    print("hit something...");
+                    hit.transform.GetComponent<BreakableObject>().TakeDamage(stats.CalculateDamage());
                 }
 
             }

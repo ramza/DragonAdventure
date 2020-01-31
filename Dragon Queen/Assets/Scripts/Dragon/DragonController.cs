@@ -78,11 +78,18 @@ public class DragonController : MonoBehaviour
                 
                 else if (Input.GetMouseButton(0))
                 {
-                    groundController.canMove = false;
-                    dState = DragonState.ATTACK;
-                    anim.SetBool("attack", true);
-                    dragonFire.Play();
-                    timer = 0;
+                    RaycastHit hit;
+
+                    int layerMask = 1 << 8;
+                    if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.5f, layerMask))
+                    {
+                        groundController.canMove = false;
+                        dState = DragonState.ATTACK;
+                        anim.SetBool("attack", true);
+                        dragonFire.Play();
+                        timer = 0;
+                    }
+
                 }
                 break;
             case DragonState.FLY:

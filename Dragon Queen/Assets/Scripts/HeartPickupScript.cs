@@ -11,7 +11,7 @@ public class HeartPickupScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        print("hit something heart");
+
         if (other.tag == "Player")
         {
             other.GetComponent<PlayerHealthManager>().HealPlayer(1);

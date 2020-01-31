@@ -16,7 +16,6 @@ public class CrystalPickupScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        print("hit something heart");
         if (other.tag == "Player")
         {
             moneyUI.AddMoney(1);
