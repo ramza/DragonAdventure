@@ -50,6 +50,10 @@ public class DragonFire : MonoBehaviour
             curretTarget = other.gameObject;
 
         }
+        else if (other.transform.GetComponent<DragonGate>())
+        {
+            other.GetComponent<DragonGate>().Open();
+        }
     }
 
     private void OnTriggerExit(Collider other)

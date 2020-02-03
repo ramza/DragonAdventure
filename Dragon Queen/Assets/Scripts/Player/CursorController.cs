@@ -33,6 +33,11 @@ public class CursorController : MonoBehaviour
                 Interactive interactive = hit.transform.GetComponent<Interactive>();
                 interactive.Interact(psm);
             }
+            else if (Input.GetMouseButtonDown(0) && hit.transform.GetComponent<Portal>())
+            {
+                Portal portal = hit.transform.GetComponent<Portal>();
+                portal.LoadNextScene();
+            }
 
         }
     }

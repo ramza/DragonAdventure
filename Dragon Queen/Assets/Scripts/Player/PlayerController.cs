@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
         var actionBtn = Input.GetKeyDown(KeyCode.R);
 
         RaycastHit hit;
-
+        // Rid Dragon
         if ( Physics.Raycast(transform.position, transform.forward, out hit, 5f))
         {
             if(hit.transform.tag == "Dragon")
@@ -35,13 +35,16 @@ public class PlayerController : MonoBehaviour
 
         if (!swimming)
         {
-            int layerMask = 1 << 4;
-            if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f, layerMask))
+            
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f))
             {
-                print("hit the water");
-                GetComponent<PlayerStateMachine>().EnterWater();
-                enterWaterPosition = transform.position;
-                swimming = true;
+                if(hit.transform.gameObject.layer == 4)
+                {
+                    GetComponent<PlayerStateMachine>().EnterWater();
+                    enterWaterPosition = transform.position;
+                    swimming = true;
+                }
+
             }
         }
 
@@ -51,7 +54,7 @@ public class PlayerController : MonoBehaviour
             int layerMask = 1 << 8;
             if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.1f, layerMask))
             {
-                if ( Mathf.Abs(transform.position.x -enterWaterPosition.x) >= 1 && Mathf.Abs(transform.position.z - enterWaterPosition.z) >= 1)
+                if ( Mathf.Abs(transform.position.x -enterWaterPosition.x) >= 1 || Mathf.Abs(transform.position.z - enterWaterPosition.z) >= 1)
                 {
                     print("left the water");
                     GetComponent<PlayerStateMachine>().ExitWater();
