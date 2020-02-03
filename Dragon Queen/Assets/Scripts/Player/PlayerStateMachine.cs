@@ -12,6 +12,7 @@ public class PlayerStateMachine : MonoBehaviour
     PlayerJumpState playerJumpState = new PlayerJumpState();
     PlayerAttackState playerAttackState = new PlayerAttackState();
     PlayerDeadState playerDeadState = new PlayerDeadState();
+    PlayerBlockState playerBlockState = new PlayerBlockState();
     public ThirdPersonController thirdPersonController;
     CharacterStats stats;
     public Animator _anim;
@@ -155,6 +156,20 @@ public class PlayerStateMachine : MonoBehaviour
         if(timer == 0)
         {
             RaycastHit hit;
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit, 15f))
+            {
+                if(hit.transform.tag == "Enemy")
+                {
+
+                    Transform objectHit = hit.transform;
+                    Vector3 direction = (objectHit.position - transform.position).normalized;
+                    Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));    // flattens the vector3
+                    transform.rotation = lookRotation;
+                }
+            }
+
 
             if (Physics.Raycast(transform.position, transform.forward, out hit, 3f))
             {
@@ -190,6 +205,11 @@ public class PlayerStateMachine : MonoBehaviour
         {
             ChangeState(playerIdleState);
         }
+
+    }
+
+    public void Block()
+    {
 
     }
 

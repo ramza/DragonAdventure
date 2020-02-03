@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public EquipmentManager equipmentManager;
     bool swimming = false;
     Vector3 enterWaterPosition = Vector3.zero;
     // Start is called before the first frame update
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (actionBtn)
                 {
-                    hit.transform.GetComponent<DragonController>().ActivateDragon();
+                    hit.transform.GetComponent<DragonController>().ActivateDragon(equipmentManager);
                     gameObject.SetActive(false);
                 }
             }

@@ -18,9 +18,9 @@ public class DragonController : MonoBehaviour
     public GameObject rider;
     CharacterController cc;
     GameObject player;
-
+    public EquipmentManager equipmentManager;
     Animator anim;
-
+    public DragonFire dragonFireAttack;
     private float timer;
     private float inputDelay = 1f;
 
@@ -39,6 +39,7 @@ public class DragonController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         dState = DragonState.IDLE;
         dragonFire.Stop();
+        rider.SetActive(false);
     }
 
     void Update()
@@ -76,17 +77,19 @@ public class DragonController : MonoBehaviour
                     DisableDragonControls();
                 }
                 
-                else if (Input.GetMouseButton(0))
+                else if (Input.GetMouseButton(0) || Input.GetKey(KeyCode.F))
                 {
                     RaycastHit hit;
 
                     int layerMask = 1 << 8;
                     if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.5f, layerMask))
                     {
+                        dragonFireAttack.activated = true;
                         groundController.canMove = false;
                         dState = DragonState.ATTACK;
                         anim.SetBool("attack", true);
                         dragonFire.Play();
+                        dragonFireAttack.EnableFire();
                         timer = 0;
                     }
 
@@ -107,12 +110,14 @@ public class DragonController : MonoBehaviour
             case DragonState.ATTACK:
                 timer += Time.deltaTime;
 
-                if (!Input.GetMouseButton(0))
+                if (!Input.GetMouseButton(0) && !Input.GetKey(KeyCode.F))
                 {
                     groundController.canMove = true;
+                    dragonFireAttack.activated = false;
                     anim.SetBool("attack", false);
                     dState = DragonState.WALK;
                     dragonFire.Stop();
+                    dragonFireAttack.DisableFire();
                 }
                 else if(timer > cookDelay)
                 {
@@ -182,8 +187,9 @@ public class DragonController : MonoBehaviour
         basicFollow.enabled = true;
     }
 
-    public void ActivateDragon()
+    public void ActivateDragon(EquipmentManager playerEquipment)
     {
+        equipmentManager.CopyEquipment(playerEquipment);
         timer = 0;
         cc.Move(Vector3.up * 1f);
         groundController.enabled = true;

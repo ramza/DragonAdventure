@@ -116,7 +116,9 @@ public class ThirdPersonController : MonoBehaviour
         if (Input.GetMouseButton(2))
         {
             transform.rotation = Quaternion.Euler(0, cameraYaw, 0); // Face camera
-
+            cameraDistance = 3 * cameraDistanceSpeed;
+            cameraDistance = Mathf.Clamp(cameraDistance, cameraDistanceMin, cameraDistanceMax);
+            lerpDistance = false;
         }
 
         else

@@ -53,6 +53,25 @@ public class PlayerIdleState : PlayerState
     }
 }
 
+
+public class PlayerBlockState : PlayerState
+{
+    public override void Enter(PlayerStateMachine playerStateMachine)
+    {
+
+    }
+
+    public override void Update(PlayerStateMachine playerStateMachine)
+    {
+        playerStateMachine.Block();
+    }
+    public override void Exit(PlayerStateMachine playerStateMachine)
+    {
+
+    }
+}
+
+
 public class PlayerAttackState : PlayerState
 {
     public override void Enter(PlayerStateMachine playerStateMachine)
