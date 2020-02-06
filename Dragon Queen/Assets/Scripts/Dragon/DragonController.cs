@@ -47,7 +47,7 @@ public class DragonController : MonoBehaviour
         switch (dState)
         {
             case DragonState.IDLE:
-
+                dragonFire.Stop();
                 //anim.SetBool("fly", true);
                 break;
             case DragonState.WALK:
@@ -189,13 +189,14 @@ public class DragonController : MonoBehaviour
 
     public void ActivateDragon(EquipmentManager playerEquipment)
     {
-        equipmentManager.CopyEquipment(playerEquipment);
+
         timer = 0;
         cc.Move(Vector3.up * 1f);
         groundController.enabled = true;
         hideTiles.enabled = true;
         dState = DragonState.WALK;
         rider.SetActive(true);
+        equipmentManager.CopyEquipment(playerEquipment);
         basicFollow.enabled = false;
         if (!groundController.canMove)
         {

@@ -13,12 +13,14 @@ public class PlayerMoneyUI : MonoBehaviour
     {
         totalMoneys += amount;
         moneyText.text = totalMoneys.ToString();
+        GameManager.Instance.crystals = totalMoneys;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        totalMoneys = GameManager.Instance.crystals;
+        moneyText.text = totalMoneys.ToString();
     }
 
     // Update is called once per frame

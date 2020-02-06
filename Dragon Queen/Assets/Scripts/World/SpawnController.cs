@@ -21,10 +21,16 @@ public class SpawnController : MonoBehaviour
             {
                 player.SetActive(false);
                 player.transform.position = spawnPoint.position;
+                player.transform.rotation = spawnPoint.rotation;
                 player.SetActive(true);
 
                 if(dragon != null)
+                {
+                 
                     dragon.transform.position = spawnPoint.position + Vector3.forward * 10f;
+               
+                }
+                   
                 return;
             }
         }

@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        equipmentManager.CopyEquipment(GameManager.Instance.playerData.hasCap, GameManager.Instance.playerData.hasArmor, GameManager.Instance.playerData.hasArms);
     }
 
     // Update is called once per frame

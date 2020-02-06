@@ -25,9 +25,9 @@ public class EquipmentPickup : MonoBehaviour
             {
                 other.transform.GetComponentInChildren<EquipmentManager>().ActivateArmor();
             }
-            else if ( cap)
+            else if (cap)
             {
-
+                other.transform.GetComponentInChildren<EquipmentManager>().ActivateCap();
             }
  
             Destroy(gameObject);

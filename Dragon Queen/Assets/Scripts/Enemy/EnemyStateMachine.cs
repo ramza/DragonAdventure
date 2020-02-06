@@ -28,7 +28,7 @@ public class EnemyStateMachine : MonoBehaviour
     public GameObject player;
     public float timer;
     private bool hasTarget;
-    private bool canAttack;
+    private bool canAttack = true;
     public float attackTime = 1f;
     public float attackRayLength = 10f;
 
@@ -42,12 +42,15 @@ public class EnemyStateMachine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+
         idleTime += Random.Range(0, 2);
         walkTime += Random.Range(-0.1f, 0.1f);
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
         enemyStats = GetComponent<EnemyStats>();
+
         // initialize state
         enemyState = enemyIdleState;
 
@@ -126,13 +129,14 @@ public class EnemyStateMachine : MonoBehaviour
 
     void EnemyAttackRay()
     {
+        print("enemy attack ray");
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, attackRayLength))
         {
 
             if ( hit.transform.tag == "Player")
             {
-  
+                print("hit the player");
                 if ( hit.transform.GetComponent<CharacterStats>().curHP <= 0)
                 {
                     targetIsDead = true;
@@ -152,7 +156,7 @@ public class EnemyStateMachine : MonoBehaviour
             return;
         }
 
-        if ( canAttack)
+        if ( canAttack && timer > 0.25f)
         {
            //print("goblin attack!");
             EnemyAttackRay();

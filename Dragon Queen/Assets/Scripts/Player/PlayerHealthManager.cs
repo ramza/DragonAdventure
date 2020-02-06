@@ -7,9 +7,12 @@ public class PlayerHealthManager : MonoBehaviour
     CharacterStats stats;
     PlayerStateMachine playerStateMachine;
     public PlayerHealthUI playerHealthUI;
+    EquipmentManager equipmentManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        equipmentManager = GetComponentInChildren<EquipmentManager>();
         stats = GetComponent<CharacterStats>();
         playerStateMachine = GetComponent<PlayerStateMachine>();
         UpdatePlayerHealth();
@@ -41,8 +44,15 @@ public class PlayerHealthManager : MonoBehaviour
 
     public void TakeDamage(float dmg)
     {
-       // print("player took damage");
-        stats.curHP -= dmg;
+        // print("player took damage");
+
+        float r = Random.Range(0, dmg+2);
+        
+        if(r >= equipmentManager.CalculateArmorClass())
+        {
+            stats.curHP -= dmg;
+        }
+
         if ( stats.curHP < 1)
         {
             playerStateMachine.KillPlayer();

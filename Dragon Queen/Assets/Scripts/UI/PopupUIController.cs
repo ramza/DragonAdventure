@@ -37,7 +37,7 @@ public class PopupUIController : MonoBehaviour
                 string hp = eStats.curHP.ToString() + "/" + eStats.maxHP.ToString();
 
                 string name = eStats.enemyName;
-                DisplayPopupText(hit.transform.position+Vector3.up*2f, name, hp);
+                DisplayPopupText(hit.transform.position+Vector3.up, name, hp);
                 return;
             }
             else if (hit.transform.tag == "Interactive")

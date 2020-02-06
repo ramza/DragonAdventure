@@ -158,15 +158,31 @@ public class PlayerStateMachine : MonoBehaviour
             RaycastHit hit;
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out hit, 15f))
+            if (Physics.Raycast(ray, out hit, 10f))
             {
                 if(hit.transform.tag == "Enemy")
                 {
+                    if(Mathf.Abs(hit.transform.position.x - transform.position.x) < 5f && Mathf.Abs(hit.transform.position.z - transform.position.z) < 5f)
+                    {
+                        Transform objectHit = hit.transform;
+                        Vector3 direction = (objectHit.position - transform.position).normalized;
+                        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));    // flattens the vector3
+                        transform.rotation = lookRotation;
+                    }
 
-                    Transform objectHit = hit.transform;
-                    Vector3 direction = (objectHit.position - transform.position).normalized;
-                    Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));    // flattens the vector3
-                    transform.rotation = lookRotation;
+
+                }
+                else if (hit.transform.tag == "Breakable")
+                {
+                    if (Mathf.Abs(hit.transform.position.x - transform.position.x) < 2f && Mathf.Abs(hit.transform.position.z - transform.position.z) < 2f)
+                    {
+                        Transform objectHit = hit.transform;
+                        Vector3 direction = (objectHit.position - transform.position).normalized;
+                        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));    // flattens the vector3
+                        transform.rotation = lookRotation;
+                        print("hit a pot.");
+                        hit.transform.GetComponent<BreakableObject>().TakeDamage(stats.CalculateDamage());
+                    }
                 }
             }
 
@@ -192,7 +208,7 @@ public class PlayerStateMachine : MonoBehaviour
                     Vector3 direction = (objectHit.position - transform.position).normalized;
                     Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));    // flattens the vector3
                     transform.rotation = lookRotation;
-                    print("hit something...");
+                    print("hit a pot.");
                     hit.transform.GetComponent<BreakableObject>().TakeDamage(stats.CalculateDamage());
                 }
 

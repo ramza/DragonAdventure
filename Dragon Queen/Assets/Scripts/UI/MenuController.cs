@@ -6,8 +6,10 @@ public class MenuController : MonoBehaviour
 {
     public GameObject escapeMenu;
     public GameObject mapMenu;
+    public GameObject itemMenu;
     bool mapMenuOn;
     bool escapeMenuOn;
+    bool itemMenuOn;
     public ThirdPersonController thirdPersonController;
 
     // Start is called before the first frame update
@@ -15,6 +17,7 @@ public class MenuController : MonoBehaviour
     {
         escapeMenu.SetActive(false);
         mapMenu.SetActive(false);
+        itemMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -26,15 +29,26 @@ public class MenuController : MonoBehaviour
             {
                 ToggleMapMenu();
             }
-            ToggleEscapeMenu();
+            if (itemMenuOn)
+            {
+                ToggleItemMenu();
+            }
+                ToggleEscapeMenu();
         }
         else if (Input.GetKeyDown(KeyCode.M))
         {
-            if (escapeMenuOn)
+            if (escapeMenuOn || itemMenuOn)
             {
                 return;
             }
             ToggleMapMenu();
+        }
+        else if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (!escapeMenuOn && !mapMenuOn)
+            {
+                ToggleItemMenu();
+            }
         }
 
     }
@@ -54,16 +68,35 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    public void ToggleItemMenu()
+    {
+        itemMenuOn = !itemMenuOn;
+        if (itemMenuOn)
+        {
+            Time.timeScale = 0;
+            itemMenu.SetActive(true);
+            thirdPersonController.canMove = false;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            itemMenu.SetActive(false);
+            thirdPersonController.canMove = true;
+        }
+    }
+
     public void ToggleEscapeMenu()
     {
         escapeMenuOn = !escapeMenuOn;
         if (escapeMenuOn)
         {
+            Time.timeScale = 0;
             escapeMenu.SetActive(true);
             thirdPersonController.canMove = false;
         }
         else
         {
+            Time.timeScale = 1;
             escapeMenu.SetActive(false);
             thirdPersonController.canMove = true;
         }

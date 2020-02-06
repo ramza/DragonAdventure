@@ -1,29 +1,8 @@
 fileFormatVersion: 2
-guid: 295cf2759b7b2244dbbd5281a7211e29
+guid: b9457aa7160f8c14eb98900996943ff2
 ModelImporter:
   serializedVersion: 26
-  internalIDToNameTable:
-  - first:
-      74: -8205601528029246726
-    second: Armature|attack_1
-  - first:
-      74: 5124216671764640631
-    second: Armature|attack_2
-  - first:
-      74: -1978303741906493279
-    second: Armature|idle
-  - first:
-      74: -272648500864207270
-    second: Armature|idle_sword
-  - first:
-      74: 1303299601406483602
-    second: Armature|run
-  - first:
-      74: 2789426751381403652
-    second: Armature|touch
-  - first:
-      74: -4736957305618052542
-    second: Armature|wave
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -108,7 +87,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

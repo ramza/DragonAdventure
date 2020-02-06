@@ -21,12 +21,17 @@ public class HideTiles : MonoBehaviour
     void Start()
     {
 
-        this.tiles = GameObject.FindGameObjectsWithTag(tileTag);
+        InitTiles();
         DeactivateDistantTiles();
   
     }
 
-    void DeactivateDistantTiles()
+    public void InitTiles()
+    {
+        this.tiles = GameObject.FindGameObjectsWithTag(tileTag);
+    }
+
+    public void DeactivateDistantTiles()
     {
         Vector3 playerPosition = this.gameObject.transform.position;
 
@@ -51,7 +56,7 @@ public class HideTiles : MonoBehaviour
     void Update()
     {
             timer += Time.deltaTime;
-            if (timer > 0.5f)
+            if (timer > 0.25f)
             {
                 timer = 0;
                 DeactivateDistantTiles();

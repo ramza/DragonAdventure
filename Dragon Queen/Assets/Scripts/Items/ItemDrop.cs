@@ -7,7 +7,7 @@ public class ItemDrop : MonoBehaviour
 {
     public int[] weightTable = { 60, 30, 20 };
     public GameObject[] dropItems;
-
+    float spawnRange = 0.5f;
     int total = 0;
 
     // Start is called before the first frame update
@@ -32,7 +32,7 @@ public class ItemDrop : MonoBehaviour
 
     
                 GameObject item = Instantiate(dropItems[i], transform.position, Quaternion.identity);
-                item.transform.position += new Vector3(Random.Range(-1, 1), 0, Random.Range(-1, 1));
+                item.transform.position += new Vector3(Random.Range(-spawnRange, spawnRange), 0, Random.Range(-spawnRange, spawnRange));
                 return;
             }
             else

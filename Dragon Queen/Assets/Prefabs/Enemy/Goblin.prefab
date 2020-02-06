@@ -75,7 +75,7 @@ MonoBehaviour:
   anim: {fileID: 3558532757352047692}
   rayOrigin: {fileID: 3558532756982015138}
   currentTarget: {fileID: 0}
-  chaseRange: 6
+  chaseRange: 8
   attackRange: 1.5
   player: {fileID: 0}
   timer: 0

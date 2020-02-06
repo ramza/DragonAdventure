@@ -27,6 +27,8 @@ public class ThirdPersonController : MonoBehaviour
     public float jumpSpeed = 8.0f;
     public float gravitySpeed = 20.0f;
 
+
+    public bool ignoreObstacles;
     bool isWalled = false;
 
     public void Start()
@@ -78,21 +80,25 @@ public class ThirdPersonController : MonoBehaviour
         // Calculate camera position
         Vector3 newCameraPosition = cameraTarget.position + (Quaternion.Euler(cameraPitch, cameraYaw, 0) * Vector3.back *1.5f* cameraDistance);
 
-        // Does new position put us inside anything?
-        RaycastHit hitInfo;
-        if (Physics.Linecast(cameraTarget.position, newCameraPosition, out hitInfo))
+        if (!ignoreObstacles)
         {
-            newCameraPosition = hitInfo.point;
-            lerpDistance = true;
-        }
-        else
-        {
-            if (lerpDistance)
+            // Does new position put us inside anything?
+            RaycastHit hitInfo;
+            if (Physics.Linecast(cameraTarget.position, newCameraPosition, out hitInfo))
             {
-                float newCameraDistance = Mathf.Lerp(Vector3.Distance(cameraTarget.position, Camera.main.transform.position), cameraDistance, 1.0f * Time.deltaTime);
-                newCameraPosition = cameraTarget.position + (Quaternion.Euler(cameraPitch, cameraYaw, 0) * Vector3.back * newCameraDistance);
+                newCameraPosition = hitInfo.point;
+                lerpDistance = true;
+            }
+            else
+            {
+                if (lerpDistance)
+                {
+                    float newCameraDistance = Mathf.Lerp(Vector3.Distance(cameraTarget.position, Camera.main.transform.position), cameraDistance, 1.0f * Time.deltaTime);
+                    newCameraPosition = cameraTarget.position + (Quaternion.Euler(cameraPitch, cameraYaw, 0) * Vector3.back * newCameraDistance);
+                }
             }
         }
+
 
         Camera.main.transform.position = newCameraPosition;
         Camera.main.transform.LookAt(cameraTarget.position);
@@ -147,7 +153,7 @@ public class ThirdPersonController : MonoBehaviour
                 moveDirection.y = jumpSpeed;
             // Speed Boost
             if (Input.GetKey(KeyCode.LeftShift))
-                moveDirection *= 1.25f;
+                moveDirection *= 1.5f;
         }
 
         if (isWalled)

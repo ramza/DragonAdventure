@@ -54,6 +54,7 @@ public class PlayerIdleState : PlayerState
 }
 
 
+
 public class PlayerBlockState : PlayerState
 {
     public override void Enter(PlayerStateMachine playerStateMachine)
@@ -78,7 +79,11 @@ public class PlayerAttackState : PlayerState
     {
         playerStateMachine.thirdPersonController.canMove = false;
         playerStateMachine.ResetTimer();
-        playerStateMachine._anim.SetBool("attack", true);
+        int r = Random.Range(1, 100);
+        if ( r < 50)
+            playerStateMachine._anim.SetBool("attack", true);
+        else
+            playerStateMachine._anim.SetBool("attack2", true);
     }
 
     public override void Update(PlayerStateMachine playerStateMachine)
@@ -89,6 +94,8 @@ public class PlayerAttackState : PlayerState
     {
         playerStateMachine.thirdPersonController.canMove = true;
         playerStateMachine._anim.SetBool("attack", false);
+        playerStateMachine._anim.SetBool("attack2", false);
+
     }
 }
 

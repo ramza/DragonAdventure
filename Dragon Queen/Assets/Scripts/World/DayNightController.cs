@@ -11,10 +11,16 @@ public class DayNightController : MonoBehaviour
     [HideInInspector]
     public float timeMultiplier = 1f;
 
+    private Color fogColor;
+    private Color startColor;
+    public float fogIncrement = 0.001f;
     float sunInitialIntensity;
 
     void Start()
     {
+        startColor = RenderSettings.fogColor;
+        fogColor = startColor;
+        RenderSettings.fog = true;
         sunInitialIntensity = sun.intensity;
     }
 
@@ -37,14 +43,23 @@ public class DayNightController : MonoBehaviour
         float intensityMultiplier = 1;
         if (currentTimeOfDay <= 0.23f || currentTimeOfDay >= 0.75f)
         {
+            RenderSettings.fogColor = Color.black;
             intensityMultiplier = 0;
         }
         else if (currentTimeOfDay <= 0.25f)
         {
+            fogColor = new Color(fogColor.r + fogIncrement, fogColor.g + fogIncrement, fogColor.b + fogIncrement);
+            RenderSettings.fogColor = fogColor;
             intensityMultiplier = Mathf.Clamp01((currentTimeOfDay - 0.23f) * (1 / 0.02f));
+        }
+        else if(currentTimeOfDay <= 0.27f)
+        {
+            RenderSettings.fogColor = startColor;
         }
         else if (currentTimeOfDay >= 0.73f)
         {
+            fogColor = new Color(fogColor.r - fogIncrement, fogColor.g - fogIncrement, fogColor.b - fogIncrement);
+            RenderSettings.fogColor = fogColor;
             intensityMultiplier = Mathf.Clamp01(1 - ((currentTimeOfDay - 0.73f) * (1 / 0.02f)));
         }
 

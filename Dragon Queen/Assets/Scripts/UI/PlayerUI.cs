@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerUI : MonoBehaviour
 {
@@ -19,12 +20,8 @@ public class PlayerUI : MonoBehaviour
 
     public void ResetPlayer()
     {
-        player.SetActive(false);
-        player.transform.position = startSpawn.position;
-        dragon.transform.position = startSpawn.position + Vector3.forward * 5f;
-        player.SetActive(true);
-        player.GetComponent<PlayerHealthManager>().Revive();
-        player.GetComponent<PlayerStateMachine>().Revive();
+       
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameOverButton.SetActive(false);
     }
 

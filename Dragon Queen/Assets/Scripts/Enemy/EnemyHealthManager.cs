@@ -23,6 +23,14 @@ public class EnemyHealthManager : MonoBehaviour
         enemyStats = GetComponent<EnemyStats>();
     }
 
+    private void OnEnable()
+    {
+        if (IsDead())
+        {
+            enemyStateMachine.Kill();
+        }
+    }
+
     public void Heal(float amount)
     {
         enemyStats.curHP += amount;
@@ -61,6 +69,10 @@ public class EnemyHealthManager : MonoBehaviour
         }
     }
 
+    public bool IsDead()
+    {
+        return dead;
+    }
 
     void EnemyKill()
     {

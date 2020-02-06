@@ -11,6 +11,7 @@ public class Portal : MonoBehaviour
     public void LoadNextScene()
     {
         GameManager.Instance.spawnPoint = spawnPoint;
+        GameManager.Instance.playerData.SavePlayerEquipment();
         SceneManager.LoadScene(nextScene);
     }
 }
