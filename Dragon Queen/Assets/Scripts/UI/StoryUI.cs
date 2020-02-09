@@ -22,6 +22,7 @@ public class StoryUI : MonoBehaviour
     public void StartDialogue(DialogueController dControl)
     {
         thirdPersonController.canMove = false;
+       
         dialogueOver = false;
         currentDialogueController = dControl;
         UpdateStoryText(dControl.firstDialogue);

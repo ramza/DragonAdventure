@@ -10,7 +10,9 @@ public class Interactive : MonoBehaviour
 
     public void Interact(PlayerStateMachine playerStateMachine)
     {
+
         this.playerStateMachine = playerStateMachine;
+        playerStateMachine.SetIldeState();
         dialogueController.StartDialogue();
     }
 

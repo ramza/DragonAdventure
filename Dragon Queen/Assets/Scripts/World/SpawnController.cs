@@ -27,7 +27,7 @@ public class SpawnController : MonoBehaviour
                 if(dragon != null)
                 {
                  
-                    dragon.transform.position = spawnPoint.position + Vector3.forward * 10f;
+                   // dragon.transform.position = spawnPoint.position + Vector3.forward * 10f;
                
                 }
                    

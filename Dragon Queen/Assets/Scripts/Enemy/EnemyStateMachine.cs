@@ -89,6 +89,12 @@ public class EnemyStateMachine : MonoBehaviour
         controller.Move(moveDirection * Time.deltaTime);
     }
 
+    private void OnEnable()
+    {
+        enemyState = enemyIdleState;
+        ChangeState(enemyIdleState);
+    }
+
     public void Idle()
     {
         if(player == null)

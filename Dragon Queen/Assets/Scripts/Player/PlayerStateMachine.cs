@@ -229,6 +229,11 @@ public class PlayerStateMachine : MonoBehaviour
 
     }
 
+    public void SetIldeState()
+    {
+        ChangeState(playerIdleState);
+    }
+
     public void Revive()
     {
         thirdPersonController.canMove = true;

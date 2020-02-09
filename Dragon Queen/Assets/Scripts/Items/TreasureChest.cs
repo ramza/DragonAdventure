@@ -17,14 +17,14 @@ public class TreasureChest : MonoBehaviour
     private void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        GameManager.Instance.AddChest(id);
-        if (GameManager.Instance.IsChestOpen(id))
-        {
-            openChest.SetActive(true);
-            closedChest.SetActive(false);
-            opened = true;
-            return;
-        }
+        //GameManager.Instance.AddChest(id);
+        //if (GameManager.Instance.IsChestOpen(id))
+        //{
+            //openChest.SetActive(true);
+            //closedChest.SetActive(false);
+            //opened = true;
+            //return;
+        //}
  
         openChest.SetActive(false);
     }
@@ -55,7 +55,7 @@ public class TreasureChest : MonoBehaviour
         for (int i = 0; i < treasures.Length; i++)
         {
             GameObject go = Instantiate(treasures[i], transform);
-            Vector3 pos = new Vector3(-1+i, 0, 0);
+            Vector3 pos = new Vector3(Random.Range(-0.3f,0.3f), 1, Random.Range(-0.3f,0.3f));
             go.transform.position = transform.position + pos + transform.forward;
         }
     }
