@@ -50,7 +50,7 @@ public class TreasureChest : MonoBehaviour
         openChest.SetActive(true);
         closedChest.SetActive(false);
         opened = true;
-        GameManager.Instance.OpenChest(id);
+        //GameManager.Instance.playerData.OpenChest(id);
 
         for (int i = 0; i < treasures.Length; i++)
         {

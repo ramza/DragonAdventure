@@ -5,6 +5,7 @@ public class CursorController : MonoBehaviour
 {
     public Camera camera;
     PlayerStateMachine psm;
+    float maxDistance = 5f;
 
     private void Start()
     {
@@ -24,19 +25,32 @@ public class CursorController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && hit.transform.GetComponent<TreasureChest>())
             {
-
-                TreasureChest chest = hit.transform.GetComponent<TreasureChest>();
-                chest.Open(psm);
+                if(Mathf.Abs(hit.transform.position.x-transform.position.x) < maxDistance && Mathf.Abs(hit.transform.position.z-transform.position.z) < maxDistance)
+                {
+                    TreasureChest chest = hit.transform.GetComponent<TreasureChest>();
+                    chest.Open(psm);
+                }
+ 
             }
             else if (Input.GetMouseButtonDown(0) && hit.transform.GetComponent<Interactive>())
             {
-                Interactive interactive = hit.transform.GetComponent<Interactive>();
-                interactive.Interact(psm);
+                if (!psm.thirdPersonController.canMove)
+                {
+                    return;
+                }
+                if (Mathf.Abs(hit.transform.position.x - transform.position.x) < maxDistance && Mathf.Abs(hit.transform.position.z - transform.position.z) < maxDistance)
+                {
+                    Interactive interactive = hit.transform.GetComponent<Interactive>();
+                    interactive.Interact(psm);
+                }
             }
             else if (Input.GetMouseButtonDown(0) && hit.transform.GetComponent<Portal>())
             {
-                Portal portal = hit.transform.GetComponent<Portal>();
-                portal.LoadNextScene();
+                if (Mathf.Abs(hit.transform.position.x - transform.position.x) < maxDistance && Mathf.Abs(hit.transform.position.z - transform.position.z) < maxDistance)
+                {
+                    Portal portal = hit.transform.GetComponent<Portal>();
+                    portal.LoadNextScene();
+                }
             }
 
         }

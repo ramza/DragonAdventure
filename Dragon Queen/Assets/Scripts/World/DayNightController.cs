@@ -6,8 +6,7 @@ public class DayNightController : MonoBehaviour
 
     public Light sun;
     public float secondsInFullDay = 120f;
-    [Range(0, 1)]
-    public float currentTimeOfDay = 0;
+    float currentTimeOfDay;
     [HideInInspector]
     public float timeMultiplier = 1f;
 
@@ -22,7 +21,9 @@ public class DayNightController : MonoBehaviour
         fogColor = startColor;
         RenderSettings.fog = true;
         sunInitialIntensity = sun.intensity;
+        currentTimeOfDay = GameManager.Instance.currentTimeOfDay;
     }
+
 
     void Update()
     {
@@ -34,6 +35,7 @@ public class DayNightController : MonoBehaviour
         {
             currentTimeOfDay = 0;
         }
+        GameManager.Instance.currentTimeOfDay = currentTimeOfDay;
     }
 
     void UpdateSun()

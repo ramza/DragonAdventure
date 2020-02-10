@@ -45,6 +45,16 @@ public class PopupUIController : MonoBehaviour
                 DisplayPopupText(hit.transform.position, hit.transform.name, "");
                 return;
             }
+            else if (hit.transform.tag == "Dragon")
+            {
+                DisplayPopupText(hit.transform.position, "Cirrus", "");
+                return;
+            }
+            else if (hit.transform.tag == "Player")
+            {
+                DisplayPopupText(hit.transform.position, "Isabelle", "");
+                return;
+            }
         }
 
         popupUI.SetActive(false);

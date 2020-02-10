@@ -27,7 +27,7 @@ public class EnemyHealthManager : MonoBehaviour
     {
         if (IsDead())
         {
-            enemyStateMachine.Kill();
+            Destroy(gameObject);
         }
     }
 

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8016663207114045198}
   - component: {fileID: 8016663207114045199}
   - component: {fileID: 8016663207114045296}
+  - component: {fileID: 39902454112401326}
   m_Layer: 0
   m_Name: HeartPickup
   m_TagString: Untagged
@@ -74,6 +75,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5488f089ab0868f46b05c7ab41870d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &39902454112401326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8016663207114045196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a37669180c4fc4c80bb24b259096ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &8016663206667219332

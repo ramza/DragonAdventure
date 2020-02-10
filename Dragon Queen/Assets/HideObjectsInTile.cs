@@ -25,6 +25,10 @@ public class HideObjectsInTile : MonoBehaviour
 
         foreach (GameObject go in objectsToCheck)
         {
+            if(go == null)
+            {
+                return;
+            }
             Vector3 tilePosition = go.gameObject.transform.position;
 
             float xDistance = Mathf.Abs(tilePosition.x - currentPosition.x);

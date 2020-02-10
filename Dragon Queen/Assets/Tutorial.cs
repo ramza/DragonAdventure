@@ -7,11 +7,31 @@ public class Tutorial : MonoBehaviour
     Interactive interactive;
     bool activated = false;
     SphereCollider sphereCollider;
+
+
+    public bool enableDragon;
+
     // Start is called before the first frame update
     void Start()
     {
+
         interactive = GetComponent<Interactive>();
-        sphereCollider = GetComponent<SphereCollider>();
+                sphereCollider = GetComponent<SphereCollider>();
+        if (GameManager.Instance.playerData.completedTutorial)
+        {
+            activated = true;
+            if (enableDragon)
+            {
+                interactive.EnableDragonFollow();
+            }
+            Destroy(gameObject);
+        }
+
+        if (enableDragon)
+        {
+            GameManager.Instance.playerData.completedTutorial = true;
+            interactive.SetEnableDragonFollow();
+        }
     }
 
     // Update is called once per frame
