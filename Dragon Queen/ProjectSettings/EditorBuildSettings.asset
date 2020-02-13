@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BeachHouse.unity
     guid: f5369da30eb7be548b484197e6bb93be
+  - enabled: 1
+    path: Assets/Scenes/WandasHouse.unity
+    guid: e8143f019cfc7f34b9d5f3afb10a6d50
   m_configObjects: {}

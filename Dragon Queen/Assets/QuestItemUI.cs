@@ -19,6 +19,14 @@ public class QuestItemUI : MonoBehaviour
         {
             mushroomIcon.enabled = false;
         }
+        if (GameManager.Instance.playerData.hasBook)
+        {
+            bookIcon.enabled = true;
+        }
+        else
+        {
+            bookIcon.enabled = false;
+        }
     }
 
     // Update is called once per frame

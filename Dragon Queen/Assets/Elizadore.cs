@@ -18,7 +18,17 @@ public class Elizadore : MonoBehaviour
 
         if (GameManager.Instance.playerData.hasMushroom)
         {
-            bookWizard.SetActive(true);
+            if(GameManager.Instance.playerData.IsQuestStarted("Find a Mushroom"))
+            {
+                GameManager.Instance.playerData.CompleteQuest("Find a Mushroom.");
+                bookWizard.SetActive(true);
+            }
+            else
+            {
+                mushroomWizard.SetActive(true);
+            }
+ 
+
         }
         else
         {

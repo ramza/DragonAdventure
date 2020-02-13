@@ -16,14 +16,14 @@ public class QuestItem : MonoBehaviour
 
         if (GameManager.Instance.playerData.IsQuestStarted(questName))
         {
-            if (GameManager.Instance.playerData.IsQuestComplete(questName))
+            if (GameManager.Instance.playerData.hasBook && itemName == "Book")
             {
                 Destroy(gameObject);
             }
         }
         else
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
         interactive = GetComponent<Interactive>();
         interactive.SetIsQuestItem();
@@ -32,14 +32,19 @@ public class QuestItem : MonoBehaviour
 
     public void PickUpQuestItem()
     {
+        if (GameManager.Instance.playerData.IsQuestStarted (questName)){
+            GameManager.Instance.playerData.CompleteQuest(questName);
+        }
 
-        GameManager.Instance.playerData.CompleteQuest(questName);
 
 
         switch (itemName)
         {
             case "Mushroom":
                 GameManager.Instance.playerData.hasMushroom = true;
+                break;
+            case "Book":
+                GameManager.Instance.playerData.hasBook = true;
                 break;
         }
 

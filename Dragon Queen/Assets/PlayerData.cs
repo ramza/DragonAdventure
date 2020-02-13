@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
-
+    public bool completedTutorial = true;
     public bool hasCap;
     public bool hasArmor;
     public bool hasArms;
     public bool hasMushroom;
+    public bool hasBook;
     public bool hasMirror;
 
-    public bool completedTutorial=true;
+    public bool hasMoonAmulet;
+    public bool hasFireAmulet;
+    public bool hasSpiritAmulet;
+
+    public bool wearingMoonAmulet;
+    public bool wearingFireAmulet;
+    public bool wearingSpiritAmulet;
+
+
     public Dictionary<string, bool> questList = new Dictionary<string, bool>();
     private Dictionary<string, bool> chests = new Dictionary<string, bool>();
 

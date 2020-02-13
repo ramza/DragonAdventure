@@ -147,7 +147,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 346781711}
+  - {fileID: 1753893472}
   m_Father: {fileID: 1713285550}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -163,13 +165,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e028b8d382bd2d045b6352fd1c7bddf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainText: Ah, hello. I am the great Elizadore. You must be the one Elisa sent. Her
-    sister, I believe.
+  mainText: Ah, hello. I am the great Elizadore. You must be Elisa's sister.
   choices:
   - answerText: Elisa said you had a birthday present for me.
-    nextNode: {fileID: 0}
-  - answerText: I flew over here on a dragon? Impressed?
-    nextNode: {fileID: 0}
+    nextNode: {fileID: 346781712}
+  - answerText: I flew over here on a dragon. Impressed?
+    nextNode: {fileID: 1753893473}
 --- !u!1 &59715511
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,81 +730,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6365483689832549114}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &283117409
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1731318487}
-    m_Modifications:
-    - target: {fileID: -4216859302048453862, guid: b53117cae0d8aa644af23e7f70ade8b7,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: b53117cae0d8aa644af23e7f70ade8b7,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: b53117cae0d8aa644af23e7f70ade8b7,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: b53117cae0d8aa644af23e7f70ade8b7,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: b53117cae0d8aa644af23e7f70ade8b7,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: b53117cae0d8aa644af23e7f70ade8b7,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: b53117cae0d8aa644af23e7f70ade8b7,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: b53117cae0d8aa644af23e7f70ade8b7,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: b53117cae0d8aa644af23e7f70ade8b7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: b53117cae0d8aa644af23e7f70ade8b7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: b53117cae0d8aa644af23e7f70ade8b7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: b53117cae0d8aa644af23e7f70ade8b7,
-        type: 3}
-      propertyPath: m_Name
-      value: Mushroom_Tall_01
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b53117cae0d8aa644af23e7f70ade8b7, type: 3}
---- !u!4 &283117410 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: b53117cae0d8aa644af23e7f70ade8b7,
-    type: 3}
-  m_PrefabInstance: {fileID: 283117409}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &297512634
 GameObject:
   m_ObjectHideFlags: 0
@@ -818,7 +744,7 @@ GameObject:
   - component: {fileID: 297512637}
   - component: {fileID: 297512636}
   m_Layer: 0
-  m_Name: ElizadoreBookQuest
+  m_Name: Elizadore
   m_TagString: Interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -943,8 +869,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainText: You found it? That's great. Don't know why you got so many though. I only
-    needed one. You'll just have to keep the rest.
-  choices: []
+    needed a bit. You'll just have to keep the rest.
+  choices:
+  - answerText: What now?
+    nextNode: {fileID: 947460340}
+--- !u!1 &346781710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 346781711}
+  - component: {fileID: 346781712}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &346781711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346781710}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 49706394}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &346781712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346781710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e028b8d382bd2d045b6352fd1c7bddf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainText: Birthday present? No, I don't think so. Actually, I was wondering if you
+    could do me a favor?
+  choices:
+  - answerText: What kind of favor?
+    nextNode: {fileID: 1717591220}
 --- !u!1 &382721145
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,6 +1300,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1141373142611877544, guid: d15f3ad5510e6414eb148220de761d59,
+        type: 3}
+      propertyPath: spawnPoint
+      value: Main
+      objectReference: {fileID: 0}
     - target: {fileID: 1141373142611877545, guid: d15f3ad5510e6414eb148220de761d59,
         type: 3}
       propertyPath: m_Name
@@ -6364,7 +6345,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e028b8d382bd2d045b6352fd1c7bddf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainText: Look for it on the island off the southern coast.
+  mainText: 'Look for it on the island off the southern coast. It''s a big, brown
+    mushroom. '
   choices: []
 --- !u!1 &875914872 stripped
 GameObject:
@@ -6484,7 +6466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e028b8d382bd2d045b6352fd1c7bddf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainText: Look for it on the island off the southern coast.
+  mainText: Come back later. I'll have something for your to do then.
   choices: []
 --- !u!1 &953796662
 GameObject:
@@ -6745,97 +6727,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 226114c09a3575849a087e297e57e4b8, type: 3}
---- !u!1 &1036388708
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1036388713}
-  - component: {fileID: 1036388712}
-  - component: {fileID: 1036388711}
-  - component: {fileID: 1036388710}
-  - component: {fileID: 1036388709}
-  m_Layer: 0
-  m_Name: Monster Manual
-  m_TagString: Interactive
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1036388709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1036388708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a4481de4b3622e4daca91a7cb9d3f25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueController: {fileID: 1036388710}
---- !u!114 &1036388710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1036388708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 074574bf2016f4b4a965473c731ef5f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  storyUI: {fileID: 2135514576}
-  firstDialogue: {fileID: 1691020865}
-  interactive: {fileID: 1036388709}
---- !u!114 &1036388711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1036388708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bea26fb26b65a33488ab4ca4b0240961, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: Book
-  questName: Find the Book.
---- !u!65 &1036388712
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1036388708}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.45, y: 0.17, z: 0.69}
-  m_Center: {x: 0, y: 0.1, z: 0}
---- !u!4 &1036388713
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1036388708}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.558, y: -0.05, z: 1.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1691020866}
-  - {fileID: 1942406038}
-  m_Father: {fileID: 0}
-  m_RootOrder: 18
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1060785783
 GameObject:
   m_ObjectHideFlags: 0
@@ -7064,7 +6955,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainText: Have you found that mushroom yet? It's just to the south west of here.
     Follow the coast and you can't miss it.
-  choices: []
+  choices:
+  - answerText: Can you tell me more?
+    nextNode: {fileID: 821345969}
 --- !u!1 &1109528061
 GameObject:
   m_ObjectHideFlags: 0
@@ -7108,7 +7001,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e028b8d382bd2d045b6352fd1c7bddf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainText: Look for it on the island off the southern coast.
+  mainText: 'Look for it on the island off the southern coast. It''s a big, brown
+    mushroom. I need it for a potion I''m working on. '
   choices: []
 --- !u!1001 &1151628694
 PrefabInstance:
@@ -7444,51 +7338,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c1686a5131ac8b45bfe913f509289c0, type: 3}
---- !u!1 &1285969399
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1285969400}
-  - component: {fileID: 1285969401}
-  m_Layer: 0
-  m_Name: StartNode
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1285969400
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1285969399}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1731318487}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1285969401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1285969399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e028b8d382bd2d045b6352fd1c7bddf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainText: You found a brown Mushroom!
-  choices: []
 --- !u!1001 &1292249894
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7662,7 +7511,7 @@ Transform:
   - {fileID: 2042325975}
   - {fileID: 297512635}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1298102360
 MonoBehaviour:
@@ -7710,7 +7559,7 @@ GameObject:
   - component: {fileID: 1303911103}
   - component: {fileID: 1303911102}
   m_Layer: 0
-  m_Name: Wizard
+  m_Name: The Apprentice
   m_TagString: Interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8050,51 +7899,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 188891958}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1691020864
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1691020866}
-  - component: {fileID: 1691020865}
-  m_Layer: 0
-  m_Name: StartNode
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1691020865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1691020864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e028b8d382bd2d045b6352fd1c7bddf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainText: You found a brown Mushroom!
-  choices: []
---- !u!4 &1691020866
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1691020864}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1036388713}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1711576240
 GameObject:
   m_ObjectHideFlags: 0
@@ -8276,7 +8080,9 @@ MonoBehaviour:
   choices:
   - answerText: Sure thing!
     nextNode: {fileID: 1109528063}
---- !u!1 &1731318485
+  - answerText: Can you tell me more?
+    nextNode: {fileID: 1109528063}
+--- !u!1 &1753893471
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8284,89 +8090,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1731318487}
-  - component: {fileID: 1731318486}
-  - component: {fileID: 1731318490}
-  - component: {fileID: 1731318489}
-  - component: {fileID: 1731318488}
+  - component: {fileID: 1753893472}
+  - component: {fileID: 1753893473}
   m_Layer: 0
-  m_Name: Brown Mushroom
-  m_TagString: Interactive
+  m_Name: GameObject (1)
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1731318486
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731318485}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.47, y: 0.76, z: 0.46}
-  m_Center: {x: -0.21, y: 0.44, z: -0.24}
---- !u!4 &1731318487
+--- !u!4 &1753893472
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731318485}
+  m_GameObject: {fileID: 1753893471}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.14, y: -0.05, z: 1.9}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 283117410}
-  - {fileID: 1285969400}
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_Children: []
+  m_Father: {fileID: 49706394}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1731318488
+--- !u!114 &1753893473
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731318485}
+  m_GameObject: {fileID: 1753893471}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a4481de4b3622e4daca91a7cb9d3f25, type: 3}
+  m_Script: {fileID: 11500000, guid: e028b8d382bd2d045b6352fd1c7bddf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueController: {fileID: 1731318489}
---- !u!114 &1731318489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731318485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 074574bf2016f4b4a965473c731ef5f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  storyUI: {fileID: 2135514576}
-  firstDialogue: {fileID: 1285969401}
-  interactive: {fileID: 1731318488}
---- !u!114 &1731318490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731318485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bea26fb26b65a33488ab4ca4b0240961, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: Mushroom
-  questName: Find a Mushroom.
+  mainText: A dragon? That's perfect. I wonder if you would do me a favor?
+  choices:
+  - answerText: What kind of favor?
+    nextNode: {fileID: 1717591220}
 --- !u!1001 &1831834526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8523,96 +8285,6 @@ Transform:
   m_Father: {fileID: 2042325975}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1942406037
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1036388713}
-    m_Modifications:
-    - target: {fileID: -4216859302048453862, guid: 05e131e80eb45b048b6c9c2ffd8db2ce,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 05e131e80eb45b048b6c9c2ffd8db2ce,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.08
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 05e131e80eb45b048b6c9c2ffd8db2ce,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 05e131e80eb45b048b6c9c2ffd8db2ce,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 05e131e80eb45b048b6c9c2ffd8db2ce,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 05e131e80eb45b048b6c9c2ffd8db2ce,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 05e131e80eb45b048b6c9c2ffd8db2ce,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 05e131e80eb45b048b6c9c2ffd8db2ce,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 05e131e80eb45b048b6c9c2ffd8db2ce,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 05e131e80eb45b048b6c9c2ffd8db2ce,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 05e131e80eb45b048b6c9c2ffd8db2ce,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 05e131e80eb45b048b6c9c2ffd8db2ce,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 16.135326
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 05e131e80eb45b048b6c9c2ffd8db2ce,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 27.452066
-      objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: 05e131e80eb45b048b6c9c2ffd8db2ce,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 4.3044424
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 05e131e80eb45b048b6c9c2ffd8db2ce,
-        type: 3}
-      propertyPath: m_Name
-      value: book
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 05e131e80eb45b048b6c9c2ffd8db2ce, type: 3}
---- !u!4 &1942406038 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 05e131e80eb45b048b6c9c2ffd8db2ce,
-    type: 3}
-  m_PrefabInstance: {fileID: 1942406037}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1974338829 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 290deff55b59b6c4788d51f2598aed4b,
@@ -8682,7 +8354,7 @@ GameObject:
   - component: {fileID: 2042325977}
   - component: {fileID: 2042325976}
   m_Layer: 0
-  m_Name: ElizadoreMushroomQuest
+  m_Name: Elizadore
   m_TagString: Interactive
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8717,7 +8389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questName: Find a Mushroom.
-  startDialogue: {fileID: 1717591220}
+  startDialogue: {fileID: 49706395}
   hintDialogue: {fileID: 1101108322}
   endDialogue: {fileID: 307491846}
   dialogueController: {fileID: 2042325978}
@@ -8747,7 +8419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storyUI: {fileID: 2135514576}
-  firstDialogue: {fileID: 0}
+  firstDialogue: {fileID: 49706395}
   interactive: {fileID: 2042325977}
 --- !u!65 &2042325979
 BoxCollider:

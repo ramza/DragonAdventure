@@ -61,6 +61,7 @@ public class DayNightController : MonoBehaviour
         else if (currentTimeOfDay >= 0.73f)
         {
             fogColor = new Color(fogColor.r - fogIncrement, fogColor.g - fogIncrement, fogColor.b - fogIncrement);
+  
             RenderSettings.fogColor = fogColor;
             intensityMultiplier = Mathf.Clamp01(1 - ((currentTimeOfDay - 0.73f) * (1 / 0.02f)));
         }

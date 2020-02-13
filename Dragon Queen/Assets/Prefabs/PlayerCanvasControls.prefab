@@ -597,7 +597,7 @@ GameObject:
   - component: {fileID: 4728351631633242464}
   - component: {fileID: 5031036034189420076}
   m_Layer: 0
-  m_Name: iconDragonAmulet
+  m_Name: iconMonsterManual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -613,7 +613,8 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1092616875301445606}
   m_Father: {fileID: 155316841890439126}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2854,8 +2855,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
-    m_Right: 0
+    m_Left: 10
+    m_Right: 10
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
@@ -4468,8 +4469,9 @@ GameObject:
   - component: {fileID: 969947676802467040}
   - component: {fileID: 4210989695486300099}
   - component: {fileID: 1877918947563455280}
+  - component: {fileID: 1228315417}
   m_Layer: 0
-  m_Name: iconMoonAmulet (2)
+  m_Name: iconSpiritAmulet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4531,6 +4533,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1228315417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3782208825448738828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96161cb9b31fa254cae8aea7059bb4a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amuletColor: 1
+  iconAmulet: {fileID: 5436830133988975915}
+  iconAmuletEquipment: {fileID: 3448609544522878439}
+  dragonColorManager: {fileID: 0}
 --- !u!1 &3804761003766768164
 GameObject:
   m_ObjectHideFlags: 0
@@ -5691,7 +5709,7 @@ GameObject:
   - component: {fileID: 9146503955815464179}
   - component: {fileID: 2060264770966997557}
   m_Layer: 0
-  m_Name: imgMoonAmulet
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5731,7 +5749,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5754749901027772772}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -5742,7 +5760,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6d578a0a7fc4b424abcb91910e950ac3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 857696278c7eea54f9d6e38a8a3a306a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6134,7 +6152,7 @@ GameObject:
   - component: {fileID: 8720406650393448093}
   - component: {fileID: 2801408251741545787}
   m_Layer: 0
-  m_Name: iconLeatherCap (2)
+  m_Name: iconAmuletEquip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6353,8 +6371,9 @@ GameObject:
   - component: {fileID: 8451015167755424426}
   - component: {fileID: 9022923012708184345}
   - component: {fileID: 403638106110449123}
+  - component: {fileID: 456674837212854157}
   m_Layer: 0
-  m_Name: iconMoonAmulet
+  m_Name: iconFireAmulet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6416,6 +6435,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &456674837212854157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7071456508944855840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96161cb9b31fa254cae8aea7059bb4a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amuletColor: 0
+  iconAmulet: {fileID: 2060264770966997557}
+  iconAmuletEquipment: {fileID: 3448609544522878439}
+  dragonColorManager: {fileID: 0}
 --- !u!1 &7087091931588576550
 GameObject:
   m_ObjectHideFlags: 0
@@ -6682,7 +6717,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mushroomIcon: {fileID: 2873766832012533094}
-  bookIcon: {fileID: 0}
+  bookIcon: {fileID: 1576927523424366031}
 --- !u!1 &7708114245095736382
 GameObject:
   m_ObjectHideFlags: 0
@@ -6761,7 +6796,7 @@ GameObject:
   - component: {fileID: 7056297797217096449}
   - component: {fileID: 7535912698462731889}
   m_Layer: 0
-  m_Name: imgMoonAmulet
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6801,7 +6836,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7792563702161321412}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -6812,7 +6847,80 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6d578a0a7fc4b424abcb91910e950ac3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4c39384215777d1458ce17890302066b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &7955031003109519798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1092616875301445606}
+  - component: {fileID: 1639580771402426153}
+  - component: {fileID: 1576927523424366031}
+  m_Layer: 0
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1092616875301445606
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7955031003109519798}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 640532155455984828}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 34, y: 34}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1639580771402426153
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7955031003109519798}
+  m_CullTransparentMesh: 0
+--- !u!114 &1576927523424366031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7955031003109519798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 6d455457632f1454a90c3267da4eb815, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6925,7 +7033,7 @@ GameObject:
   - component: {fileID: 4115733757769054869}
   - component: {fileID: 5436830133988975915}
   m_Layer: 0
-  m_Name: imgMoonAmulet
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6965,7 +7073,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8336660259421120884}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -6976,7 +7084,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6d578a0a7fc4b424abcb91910e950ac3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ecba7f32b0948eb458f8ea5d6b33978f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7489,8 +7597,9 @@ GameObject:
   - component: {fileID: 801517450815324758}
   - component: {fileID: 1407691778167592560}
   - component: {fileID: 3601991321045610782}
+  - component: {fileID: 2205004170241611028}
   m_Layer: 0
-  m_Name: iconMoonAmulet (1)
+  m_Name: iconMoonAmulet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7552,3 +7661,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2205004170241611028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9147534059761953397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96161cb9b31fa254cae8aea7059bb4a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amuletColor: 2
+  iconAmulet: {fileID: 7535912698462731889}
+  iconAmuletEquipment: {fileID: 3448609544522878439}
+  dragonColorManager: {fileID: 0}
