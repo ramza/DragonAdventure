@@ -11,9 +11,16 @@ public class QuestController : MonoBehaviour
 
     public DialogueController dialogueController;
     private Interactive interactive;
+    private Elizadore elizadore;
+    public bool isElizadore = true;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (isElizadore)
+        {
+            elizadore = transform.parent.GetComponent<Elizadore>();
+        }
         interactive = GetComponent<Interactive>();
         interactive.SetIsQuest();
         UpdateDialogue();
@@ -24,8 +31,7 @@ public class QuestController : MonoBehaviour
         UpdateDialogue();
         // start the quest
         GameManager.Instance.playerData.AddQuest(questName);
-        
-        
+       
 
     }
 
@@ -38,6 +44,7 @@ public class QuestController : MonoBehaviour
             if (GameManager.Instance.playerData.IsQuestComplete(questName))
             {
                 print("quest comaplete");
+                elizadore.FinishQuest(questName);
                 dialogueController.firstDialogue = endDialogue;
                 return;
             }

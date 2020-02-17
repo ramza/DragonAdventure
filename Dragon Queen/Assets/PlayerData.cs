@@ -11,6 +11,8 @@ public class PlayerData : MonoBehaviour
     public bool hasMushroom;
     public bool hasBook;
     public bool hasMirror;
+    public bool questCompleteMushroom;
+    public bool questCompleteBook;
 
     public bool hasMoonAmulet;
     public bool hasFireAmulet;

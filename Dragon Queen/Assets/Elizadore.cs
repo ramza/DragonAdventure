@@ -7,8 +7,6 @@ public class Elizadore : MonoBehaviour
     public GameObject mushroomWizard;
     public GameObject bookWizard;
 
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -16,25 +14,29 @@ public class Elizadore : MonoBehaviour
         bookWizard.SetActive(false);
 
 
-        if (GameManager.Instance.playerData.hasMushroom)
+        if (GameManager.Instance.playerData.questCompleteMushroom)
         {
-            if(GameManager.Instance.playerData.IsQuestStarted("Find a Mushroom"))
-            {
-                GameManager.Instance.playerData.CompleteQuest("Find a Mushroom.");
-                bookWizard.SetActive(true);
-            }
-            else
-            {
-                mushroomWizard.SetActive(true);
-            }
- 
-
+            bookWizard.SetActive(true);
         }
         else
         {
             mushroomWizard.SetActive(true);
         }
 
+    }
+
+    public void FinishQuest(string questName)
+    {
+        switch (questName)
+        {
+            case "Find a Mushroom.":
+                GameManager.Instance.playerData.questCompleteMushroom = true;
+                break;
+            case "Find a Book.":
+                GameManager.Instance.playerData.questCompleteBook = true;
+                break;
+
+        }
     }
 
     // Update is called once per frame
